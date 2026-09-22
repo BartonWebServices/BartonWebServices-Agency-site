@@ -17,6 +17,10 @@ export default function Parallax({
     const el = ref.current;
     if (!el) return;
 
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
     let frame = 0;
 
     const update = () => {

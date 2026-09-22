@@ -26,8 +26,10 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 border-b bg-white/95 backdrop-blur transition-colors duration-300 ${
-        scrolled ? "border-black/10" : "border-transparent"
+      className={`sticky top-0 z-50 border-b backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 ${
+        scrolled
+          ? "border-black/10 bg-white/80"
+          : "border-white/10 bg-white/60"
       }`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 sm:px-8">
@@ -76,7 +78,7 @@ export default function Header() {
       </div>
 
       {open && (
-        <div className="border-t border-black/10 bg-white px-6 py-6 md:hidden">
+        <div className="border-t border-black/10 bg-white/90 px-6 py-6 backdrop-blur-xl backdrop-saturate-150 md:hidden">
           <nav className="flex flex-col gap-5">
             {links.map((link) => (
               <Link

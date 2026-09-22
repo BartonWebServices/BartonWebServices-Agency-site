@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Layers } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import Parallax from "@/components/Parallax";
 
 export const metadata: Metadata = {
   title: "Our Work",
@@ -12,8 +13,22 @@ const placeholders = [1, 2, 3, 4];
 
 export default function WorkPage() {
   return (
-    <section className="bg-white text-black">
-      <div className="mx-auto max-w-6xl px-6 py-24 sm:px-8 sm:py-32">
+    <section className="relative overflow-hidden bg-white text-black">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <Parallax
+          speed={0.12}
+          className="absolute -right-20 top-0 select-none"
+        >
+          <span
+            aria-hidden
+            className="block text-[28vw] font-bold leading-none text-black/[0.06]"
+          >
+            B
+          </span>
+        </Parallax>
+      </div>
+
+      <div className="relative mx-auto max-w-6xl px-6 py-24 sm:px-8 sm:py-32">
         <Reveal>
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-zinc-500">
             Our Work
@@ -35,10 +50,15 @@ export default function WorkPage() {
           {placeholders.map((n, i) => (
             <Reveal
               key={n}
+              variant="scale"
               delay={i * 80}
-              className="flex aspect-video flex-col items-center justify-center gap-4 bg-white p-8 text-center"
+              className="group flex aspect-video flex-col items-center justify-center gap-4 bg-white/50 p-8 text-center backdrop-blur-lg backdrop-saturate-150 transition-all duration-300 hover:bg-white/80"
             >
-              <Layers size={28} strokeWidth={1.5} className="text-zinc-400" />
+              <Layers
+                size={28}
+                strokeWidth={1.5}
+                className="text-zinc-400 transition-transform duration-300 group-hover:scale-110"
+              />
               <div>
                 <p className="text-lg font-semibold">
                   Demo Site {String(n).padStart(2, "0")}
